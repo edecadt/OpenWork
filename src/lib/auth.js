@@ -6,7 +6,12 @@ import prisma from "./prisma";
 
 export const { auth, handlers } = NextAuth({
   adapter: PrismaAdapter(prisma),
-  providers: [GithubProvider, GoogleProvider],
+  providers: [
+    GithubProvider({
+      allowDangerousEmailAccountLinking: true,
+    }),
+    GoogleProvider,
+  ],
   pages: {
     signIn: "/auth/login",
     newUser: "/auth/register",
