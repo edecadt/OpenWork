@@ -97,7 +97,7 @@ const Header = () => {
         <div className="bg-white w-[12px]" />
         {session.data?.user ? (
           <Avatar className="w-[45px] h-[45px]">
-            <AvatarImage src= {session.data.user.image} />
+            <AvatarImage src={session.data.user.image} />
             <AvatarFallback>CN</AvatarFallback>
           </Avatar>
         ) : (
