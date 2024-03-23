@@ -24,10 +24,12 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
+import { useSession } from "next-auth/react";
 
 const Header = () => {
   const [isInputFocused, setIsInputFocused] = useState(false);
   const session = useSession();
+
   return (
     <div className="relative">
       <div className="bg-gray-100 h-[30px]"></div>
@@ -93,9 +95,9 @@ const Header = () => {
           <Link href="/create-post">Post A Job</Link>
         </Button>
         <div className="bg-white w-[12px]" />
-        {isLoggedIn ? (
+        {session.data?.user ? (
           <Avatar className="w-[65px] h-[65px]">
-            <AvatarImage src="https://github.com/shadcn.png" />
+            <AvatarImage src= {session.data.user.image} />
             <AvatarFallback>CN</AvatarFallback>
           </Avatar>
         ) : (
