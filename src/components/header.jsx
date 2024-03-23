@@ -72,7 +72,7 @@ const Header = () => {
           />
           {isInputFocused && (
             <CommandList
-              className="absolute left-[px] top-[97px] bg-white shadow-lg rounded-b-md"
+              className="absolute z-40 left-[px] top-[97px] bg-white shadow-lg rounded-b-md"
               style={{ minWidth: "200px" }}
             >
               <CommandEmpty>No results found.</CommandEmpty>
@@ -96,7 +96,7 @@ const Header = () => {
         </Button>
         <div className="bg-white w-[12px]" />
         {session.data?.user ? (
-          <Avatar className="w-[65px] h-[65px]">
+          <Avatar className="w-[45px] h-[45px]">
             <AvatarImage src= {session.data.user.image} />
             <AvatarFallback>CN</AvatarFallback>
           </Avatar>

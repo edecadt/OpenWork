@@ -9,7 +9,6 @@ export default async function Home() {
   return (
     <div>
       <Header />
-      <Under_header />
       <LightGrayRectangleWithImage />
     </div>
   );
