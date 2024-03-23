@@ -1,3 +1,4 @@
+"use client";
 import { Button } from "@/components/ui/button";
 import {
   Card,
@@ -10,9 +11,19 @@ import {
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { GithubIcon } from "lucide-react";
+import { signIn, useSession } from "next-auth/react";
+import { useRouter } from "next/navigation";
 import { FaGoogle } from "react-icons/fa";
 
-export default async function Register() {
+export default function Register() {
+  const { data: session } = useSession();
+  const router = useRouter();
+
+  if (session) {
+    router.push("/");
+    return null;
+  }
+
   return (
     <div className="flex items-center justify-center h-screen">
       <Card className="w-[350px]">
@@ -45,16 +56,16 @@ export default async function Register() {
                   placeholder="Your super password"
                 />
               </div>
-              <div className="flex flex-col space-y-1.5">
-                <Button variant="outline">
-                  <FaGoogle className="w-4 h-4 mr-2" /> Login with Google
-                </Button>
-                <Button variant="outline">
-                  <GithubIcon className="w-4 h-4 mr-2" /> Login with Github
-                </Button>
-              </div>
             </div>
           </form>
+          <div className="flex flex-col space-y-1.5 pt-6">
+            <Button variant="outline" onClick={() => signIn("google")}>
+              <FaGoogle className="w-4 h-4 mr-2" /> Login with Google
+            </Button>
+            <Button variant="outline" onClick={() => signIn("github")}>
+              <GithubIcon className="w-4 h-4 mr-2" /> Login with Github
+            </Button>
+          </div>
         </CardContent>
         <CardFooter className="flex justify-center">
           <Button>Register</Button>
