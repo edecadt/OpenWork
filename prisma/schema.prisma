@@ -60,6 +60,7 @@ model Post {
   title       String
   type        String
   description String
+  content     String
   location    String
   department  Int
   company     String
