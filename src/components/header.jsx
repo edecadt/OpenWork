@@ -24,7 +24,16 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuLabel,
+  DropdownMenuSeparator,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu";
 import { useSession } from "next-auth/react";
+import { LogOut } from "lucide-react";
 
 const Header = () => {
   const [isInputFocused, setIsInputFocused] = useState(false);
@@ -37,7 +46,7 @@ const Header = () => {
         <div className="bg-white w-[280px]" />
         <BriefcaseBusiness className="h-[40px] w-[40px] text-blue-500" />
         <div className="bg-white w-[8px]" />
-        <span className="text-[20px] font-semibold">OpenWork</span>
+        <span className="text-[24px] font-semibold">OpenWork</span>
         <div className="bg-white w-[32px]" />
         <Select>
           <SelectTrigger className="w-[140px]">
@@ -96,10 +105,28 @@ const Header = () => {
         </Button>
         <div className="bg-white w-[12px]" />
         {session.data?.user ? (
-          <Avatar className="w-[45px] h-[45px]">
-            <AvatarImage src={session.data.user.image} />
-            <AvatarFallback>CN</AvatarFallback>
-          </Avatar>
+          <DropdownMenu>
+            <DropdownMenuTrigger>
+              <Avatar className="w-[45px] h-[45px]">
+                <AvatarImage src={session.data.user.image} />
+                <AvatarFallback>CN</AvatarFallback>
+              </Avatar>
+            </DropdownMenuTrigger>
+            <DropdownMenuContent>
+              <DropdownMenuLabel>My Account</DropdownMenuLabel>
+              <DropdownMenuSeparator />
+              <DropdownMenuItem>Profile</DropdownMenuItem>
+              <DropdownMenuItem>Parameter</DropdownMenuItem>
+              <DropdownMenuItem>
+                <Link href="/api/auth/signout" className="text-red-500">
+                    Sign out
+                </Link>
+                <div className="w-[10px]" />
+                <LogOut className="h-[20px] w-[20px] text-red-500"/>
+
+              </DropdownMenuItem>
+            </DropdownMenuContent>
+          </DropdownMenu>
         ) : (
           <Button variant="outline" asChild>
             <Link href="/auth/login" className="text-blue-500">
