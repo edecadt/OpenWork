@@ -82,16 +82,26 @@ const Header = () => {
             >
               <CommandEmpty>No results found.</CommandEmpty>
               <CommandGroup heading="Suggestions">
-                <CommandItem>Calendar</CommandItem>
-                <CommandItem>Search Emoji</CommandItem>
-                <CommandItem>Calculator</CommandItem>
+                <CommandItem>Search Job</CommandItem>
+                <CommandItem>Post Job</CommandItem>
+                <CommandItem>Send your opinion</CommandItem>
               </CommandGroup>
               <CommandSeparator />
-              <CommandGroup heading="Settings">
-                <CommandItem>Profile</CommandItem>
-                <CommandItem>Billing</CommandItem>
-                <CommandItem>Settings</CommandItem>
-              </CommandGroup>
+              {session.data?.user ? (
+                <CommandGroup heading="Settings">
+                  <CommandItem>Profile</CommandItem>
+                  <CommandItem>Parameter</CommandItem>
+                  <CommandItem>
+                    <Link href="/api/auth/signout">Sign out</Link>
+                  </CommandItem>
+                </CommandGroup>
+              ) : (
+                <CommandGroup heading="Settings">
+                  <CommandItem>
+                    <Link href="/auth/signin">Sign in</Link>
+                  </CommandItem>
+                </CommandGroup>
+              )}
             </CommandList>
           )}
         </Command>
