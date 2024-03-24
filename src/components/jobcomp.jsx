@@ -180,7 +180,7 @@ const MyPage = () => {
           <div style={{ position: "relative" }}>
             <p style={getGridStyles(index).type}>{item.type}</p>
           </div>
-          <p style={getGridStyles(index).salary}>{item.salary}</p>
+          <p style={getGridStyles(index).salary}>${item.salary}</p>
           <p style={getGridStyles(index).company}>{item.company}</p>
           <p style={getGridStyles(index).location}>{item.location}</p>
           <img
