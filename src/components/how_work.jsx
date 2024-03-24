@@ -6,7 +6,7 @@ const HowWork = () => {
     const containerStyle = {
         position: 'relative',
         top: '-115px',
-        width: '100*%',
+        width: '100%',
         height: '794px',
         overflowX: 'hidden',
     };

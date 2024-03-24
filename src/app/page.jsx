@@ -4,6 +4,7 @@ import Under_header from "@/components/under_header";
 import LightGrayRectangleWithImage from '@/components/GreyRectMid';
 import Footer from "@/components/footer";
 import HowWork from "@/components/how_work";
+import Avis from "@/components/avis";
 import Employe_candidate from "@/components/employe_candiate";
 
 export default async function Home() {
@@ -17,6 +18,7 @@ export default async function Home() {
       {/* <Under_header pageName={pageName} displayPass={displayPass} Pass={Pass}/> */}
       <LightGrayRectangleWithImage />
       <HowWork />
+      <Avis />
       <Employe_candidate />
       <Footer/>
     </div>
