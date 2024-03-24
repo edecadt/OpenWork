@@ -1,29 +1,6 @@
 "use client";
-import React, { useState } from "react";
-import { BriefcaseBusiness } from "lucide-react";
-import { Button } from "@/components/ui/button";
-import Link from "next/link.js";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
-import {
-  Command,
-  CommandDialog,
-  CommandInput,
-  CommandList,
-  CommandEmpty,
-  CommandGroup,
-  CommandItem,
-  CommandShortcut,
-  CommandSeparator,
-} from "./ui/command.jsx";
-import {
-  Select,
-  SelectContent,
-  SelectGroup,
-  SelectItem,
-  SelectLabel,
-  SelectTrigger,
-  SelectValue,
-} from "@/components/ui/select";
+import { Button } from "@/components/ui/button";
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -32,8 +9,27 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
-import { useSession } from "next-auth/react";
-import { LogOut } from "lucide-react";
+import {
+  Select,
+  SelectContent,
+  SelectGroup,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
+import { BriefcaseBusiness, LogOut } from "lucide-react";
+import { signOut, useSession } from "next-auth/react";
+import Link from "next/link.js";
+import { useState } from "react";
+import {
+  Command,
+  CommandEmpty,
+  CommandGroup,
+  CommandInput,
+  CommandItem,
+  CommandList,
+  CommandSeparator,
+} from "./ui/command.jsx";
 
 const Header = () => {
   const [isInputFocused, setIsInputFocused] = useState(false);
@@ -117,13 +113,10 @@ const Header = () => {
               <DropdownMenuSeparator />
               <DropdownMenuItem>Profile</DropdownMenuItem>
               <DropdownMenuItem>Parameter</DropdownMenuItem>
-              <DropdownMenuItem>
-                <Link href="/api/auth/signout" className="text-red-500">
-                    Sign out
-                </Link>
+              <DropdownMenuItem onClick={signOut}>
+                <div className="text-red-500">Sign out</div>
                 <div className="w-[10px]" />
-                <LogOut className="h-[20px] w-[20px] text-red-500"/>
-
+                <LogOut className="h-[20px] w-[20px] text-red-500" />
               </DropdownMenuItem>
             </DropdownMenuContent>
           </DropdownMenu>
