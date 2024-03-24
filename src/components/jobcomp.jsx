@@ -1,24 +1,55 @@
 "use client";
-import { Search, MapPin } from "lucide-react";
-import React, { useState } from "react";
-import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
-import { Inter } from "next/font/google";
+import { Input } from "@/components/ui/input";
+import { MapPin, Search } from "lucide-react";
+import { useEffect, useState } from "react";
 
 const getGridStyles = () => {
   return {
-    title: { marginTop: "20px", marginLeft: "20px", fontWeight: '550' },
-    type: { marginTop: "10px", marginLeft: "22px", color: "#0BA02C", fontWeight: 'bold', fontSize: '13px' },
-    salary: { marginTop: "-20px", marginLeft: "120px", color: "#767F8C", fontSize: '13px' },
-    company: { marginTop: "20px", marginLeft: "90px", fontWeight: '450' },
+    title: { marginTop: "20px", marginLeft: "20px", fontWeight: "550" },
+    type: {
+      marginTop: "10px",
+      marginLeft: "22px",
+      color: "#0BA02C",
+      fontWeight: "bold",
+      fontSize: "13px",
+    },
+    salary: {
+      marginTop: "-20px",
+      marginLeft: "120px",
+      color: "#767F8C",
+      fontSize: "13px",
+    },
+    company: { marginTop: "20px", marginLeft: "90px", fontWeight: "450" },
     location: { marginTop: "5px", marginLeft: "90px", color: "#767F8C" },
     image: { marginTop: "20px", marginLeft: "20px" },
-    typebg: { position: "absolute", backgroundColor: "#E7F6EA", width: "90px", height: "20px", borderRadius: "5px", top: "54px", left: "15px" }
+    typebg: {
+      position: "absolute",
+      backgroundColor: "#E7F6EA",
+      width: "90px",
+      height: "20px",
+      borderRadius: "5px",
+      top: "54px",
+      left: "15px",
+    },
   };
 };
 
 const MyPage = () => {
   const [isInputFocused, setIsInputFocused] = useState(false);
+  const [gridData, setGridData] = useState([]);
+
+  useEffect(() => {
+    fetch("/api/getPosts")
+      .then((response) => response.json())
+      .then((data) => {
+        setGridData(data);
+        console.log("Data fetched:", data);
+      })
+      .catch((error) => {
+        console.error("Error fetching data:", error);
+      });
+  }, []);
 
   const buttonProps = {
     width: "131px",
@@ -43,26 +74,26 @@ const MyPage = () => {
     borderRadius: "2px",
   };
 
-  const gridData = [
-    {
-      title: "NTM LUCA",
-      type: "PART-TIME",
-      salary: "$20,000",
-      image: "ggl.png",
-      company: "Google Inc.",
-      location: "Lille, France",
-      styles: getGridStyles()
-    },
-    {
-      title: "NTM LUCA",
-      type: "PART-TIME",
-      salary: "$20,000",
-      image: "ggl.png",
-      company: "Google Inc.",
-      location: "Lille, France",
-      styles: getGridStyles()
-    },
-  ];
+  // const gridData = [
+  //   {
+  //     title: "NTM LUCA",
+  //     type: "PART-TIME",
+  //     salary: "$20,000",
+  //     image: "ggl.png",
+  //     company: "Google Inc.",
+  //     location: "Lille, France",
+  //     styles: getGridStyles()
+  //   },
+  //   {
+  //     title: "NTM LUCA",
+  //     type: "PART-TIME",
+  //     salary: "$20,000",
+  //     image: "ggl.png",
+  //     company: "Google Inc.",
+  //     location: "Lille, France",
+  //     styles: getGridStyles()
+  //   },
+  // ];
 
   return (
     <div className="page-container">
@@ -144,15 +175,23 @@ const MyPage = () => {
             top: `${400 + Math.floor(index / 3) * 220}px`,
           }}
         >
-            <p style={item.styles.title}>{item.title}</p>
-          <div style={item.styles.typebg} />
+          <p style={getGridStyles(index).title}>{item.title}</p>
+          <div style={getGridStyles(index).typebg} />
           <div style={{ position: "relative" }}>
-            <p style={item.styles.type}>{item.type}</p>
+            <p style={getGridStyles(index).type}>{item.type}</p>
           </div>
-          <p style={item.styles.salary}>{item.salary}</p>
-          <p style={item.styles.company}>{item.company}</p>
-          <p style={item.styles.location}>{item.location}</p>
-          <img src={item.image} style={{ width: '100%', height: 'auto', marginTop: "-20px", marginLeft: "20px" }} />
+          <p style={getGridStyles(index).salary}>{item.salary}</p>
+          <p style={getGridStyles(index).company}>{item.company}</p>
+          <p style={getGridStyles(index).location}>{item.location}</p>
+          <img
+            src={item.image}
+            style={{
+              width: "100%",
+              height: "auto",
+              marginTop: "-20px",
+              marginLeft: "20px",
+            }}
+          />
         </div>
       ))}
     </div>
