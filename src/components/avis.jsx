@@ -29,6 +29,19 @@ const renderStarRating = (star) => {
 };
 const Avis = () => {
   const [gridData, setGridData] = useState([]);
+
+  useEffect(() => {
+    fetch("/api/getAvis")
+        .then((response) => response.json())
+        .then((data) => {
+          setGridData(data);
+          console.log("Data fetched:", data);
+        })
+        .catch((error) => {
+          console.error("Error fetching data:", error);
+        });
+  }, []);
+
   const avisContainer = {
     position: "relative",
     top: "-300px",
@@ -57,46 +70,48 @@ const Avis = () => {
     left: "300px",
     width: "1300px",
   };
-  useEffect(() => {
-    fetch("/api/getAvis")
-      .then((response) => response.json())
-      .then((data) => {
-        setGridData(data);
-        console.log("Data fetched:", data);
-      })
-      .catch((error) => {
-        console.error("Error fetching data:", error);
-      });
-  }, []);
+
+  // Fonction pour diviser le contenu en morceaux de 50 caractères
+  function splitContent(content) {
+    const chunks = [];
+    for (let i = 0; i < content.length; i += 125) {
+      chunks.push(content.substring(i, i + 125));
+    }
+    return chunks;
+  }
+
   return (
-    <div style={avisContainer}>
-      <div style={avisContent}>
-        <p style={avisText}>Clients Testimonial</p>
-        <Carousel style={carouselStyle}>
-          <CarouselContent>
-            {/* Mapper sur les données de grille pour générer les éléments CarouselItem */}
-            {gridData.map((avis, index) => (
-              <CarouselItem key={index}>
-                <div className={"flex flex-col"}>
-                  <p>{avis.content}</p>
-                  <div className={"flex flex-row justify-center"}>
-                    {renderStarRating(avis.star)}
-                  </div>
-                </div>
-              </CarouselItem>
-            ))}
-          </CarouselContent>
-          <CarouselPrevious />
-          <CarouselNext />
-          <div className={"pt-7"}>
-            <Link href={"/Avis"}>
-              <Button>Send your opinion</Button>
-            </Link>
-          </div>
-        </Carousel>
+      <div style={avisContainer}>
+        <div style={avisContent}>
+          <p style={avisText}>Clients Testimonial</p>
+          <Carousel style={carouselStyle}>
+            <CarouselContent>
+              {/* Mapper sur les données de grille pour générer les éléments CarouselItem */}
+              {gridData.map((avis, index) => (
+                  <CarouselItem key={index}>
+                    <div className={"flex flex-col"}>
+                      {splitContent(avis.content).map((chunk, i) => (
+                          <p key={i}>{chunk}</p>
+                      ))}
+                      <div className={"flex flex-row justify-center"}>
+                        {renderStarRating(avis.star)}
+                      </div>
+                    </div>
+                  </CarouselItem>
+              ))}
+            </CarouselContent>
+            <CarouselPrevious />
+            <CarouselNext />
+            <div className={"pt-7"}>
+              <Link href={"/Avis"}>
+                <Button>Send your opinion</Button>
+              </Link>
+            </div>
+          </Carousel>
+        </div>
       </div>
-    </div>
   );
 };
+
 
 export default Avis;
