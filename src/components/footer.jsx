@@ -99,7 +99,7 @@ const Footer = () => {
       <div className="bg-gray-900 h-[72px] relative">
         <div className="w-[500px] absolute top-[24px] left-[300px]">
           <span className="text-gray-400 text-[16px] font-normal">
-          @ 2021 Jobpilot - Job Portal. All rights Rserved</span>
+          @ 2024 OpenWork. All rights Reserved</span>
         </div>
         <div className="w-[200px] absolute top-[24px] left-[1490px]">
           <Github />
