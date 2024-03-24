@@ -1,11 +1,13 @@
 import { ArrowRight } from "lucide-react";
+import Image from "next/image";
 import Link from "next/link";
 import { Button } from "./ui/button";
 
 const Employe_candidate = () => {
   return (
     <div className="bg-white h-[100px] relative">
-      <img
+      <Image
+        alt=""
         className="absolute left-[300px] top-[-320px]"
         src="/candidate.png"
         width={648}
@@ -24,8 +26,9 @@ const Employe_candidate = () => {
         </Button>
       </Link>
 
-      <img
+      <Image
         className="absolute left-[972px] top-[-320px]"
+        alt=""
         src="/employe.png"
         width={648}
         height={290}
