@@ -31,7 +31,7 @@ export default function CreatePostPage() {
     content: "",
     location: "",
     region: "",
-    userId: session.data.user.id ?? "",
+    userId: "",
   });
   if (!session || !session.data?.user) {
     router.push("/auth/login");
