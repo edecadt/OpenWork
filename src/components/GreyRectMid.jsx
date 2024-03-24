@@ -8,6 +8,7 @@ import {
   SelectGroup
 } from "@/components/ui/select"
 import { Input } from "@/components/ui/input"
+import Link from 'next/link';
 
 const LightGrayRectangleWithImage = () => {
   const containerStyle = {
@@ -266,7 +267,7 @@ const LightGrayRectangleWithImage = () => {
               </SelectGroup>
             </SelectContent>
           </Select>
-          <button style={buttonStyle}>Find Job</button>
+          <Link href={"/job"}><button style={buttonStyle}>Find Job</button></Link>
         </div>
         <div style={whiteRectangleFirst}>
           {renderRectangleWithImage('11%', '73%', '/briefcase-business.png')}
