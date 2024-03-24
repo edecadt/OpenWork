@@ -21,7 +21,6 @@ const Under_header = ({ pageName, displayPass, Pass }) => {
             <React.Fragment key={index}>
               <BreadcrumbItem>
                 <BreadcrumbLink href={Pass[index]}>{displayPart}</BreadcrumbLink>
-                <BreadcrumbLink href={"/job"}>{"Job"}</BreadcrumbLink>
               </BreadcrumbItem>
               {index !== displayPass.length - 1 && <BreadcrumbSeparator />}
             </React.Fragment>
