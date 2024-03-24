@@ -12,6 +12,7 @@ import { Input } from "@/components/ui/input"
 const LightGrayRectangleWithImage = () => {
   const containerStyle = {
     position: 'relative',
+    top: '-130px',
     width: '100%',
     height: '794px',
   };
@@ -27,6 +28,7 @@ const LightGrayRectangleWithImage = () => {
     justifyContent: 'center',
     padding: '100px 0',
     marginTop: '130px',
+    boxShadow: '0px 4px 6px rgba(0, 0, 0, 0.1)',
   };
 
   const imageStyle = {
@@ -143,31 +145,6 @@ const LightGrayRectangleWithImage = () => {
     borderRadius: '8px',
   };
 
-  const logoBagage1 = {
-    position: 'relative',
-    top: '32%',
-    left: '10%',
-    width: '50px',
-    height: '50px',
-  }
-
-  const generateGrayRectangles = (positions) => {
-    return positions.map((position, index) => (
-      <div
-        key={index}
-        style={{
-          width: '72px',
-          height: '72px',
-          backgroundColor: '#EDEDED',
-          position: 'absolute',
-          left: position.left,
-          top: position.top,
-          borderRadius: '8px',
-        }}
-      />
-    ));
-  };
-
   const positions = [
     { top: '77%', left: '11.5%' },
     { top: '77%', left: '31.5%' },
@@ -189,7 +166,7 @@ const LightGrayRectangleWithImage = () => {
       left: x,
       width: '100px',
       height: '100px',
-      backgroundColor: '#f2f2f2',
+      backgroundColor: '#e7f0fa',
       borderRadius: '8px',
     };
 
@@ -199,8 +176,8 @@ const LightGrayRectangleWithImage = () => {
       top: '50%',
       left: '50%',
       transform: 'translate(-50%, -50%)',
-      width: '40px',
-      height: '40px',
+      width: '45px',
+      height: '45px',
     };
 
     return (

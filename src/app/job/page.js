@@ -6,7 +6,7 @@ import MyPage from '@/components/jobcomp';
 
 export default async function Home() {
   const session = await auth();
-  const displayPass = ["Home / Find job"];
+  const displayPass = ["Home"];
   const Pass = ["/"];
   const pageName = "Find Job";
   return (

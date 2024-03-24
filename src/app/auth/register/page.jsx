@@ -12,6 +12,7 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { GithubIcon } from "lucide-react";
 import { signIn, useSession } from "next-auth/react";
+import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { FaGoogle } from "react-icons/fa";
 
@@ -67,8 +68,11 @@ export default function Register() {
             </Button>
           </div>
         </CardContent>
-        <CardFooter className="flex justify-center">
+        <CardFooter className="flex flex-col justify-center">
           <Button>Register</Button>
+          <Link className="pt-2 text-sm" href={"/auth/login"}>
+            Login to your <span className="text-blue-500">account</span>
+          </Link>
         </CardFooter>
       </Card>
     </div>
