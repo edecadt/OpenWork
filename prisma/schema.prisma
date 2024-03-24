@@ -45,6 +45,7 @@ model User {
   accounts      Account[]
   sessions      Session[]
   Post          Post[]
+  Avis          Avis[]
 }
 
 model VerificationToken {
@@ -65,6 +66,18 @@ model Post {
   department  String
   company     String
   salary      Float
+  createdAt   DateTime @default(now())
+
+  ownerId String
+  owner   User   @relation(fields: [ownerId], references: [id])
+
+  @@index([createdAt])
+}
+
+model Avis {
+  id          String   @id @default(cuid())
+  star        Int
+  content     String
   createdAt   DateTime @default(now())
 
   ownerId String
