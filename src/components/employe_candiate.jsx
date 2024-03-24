@@ -5,7 +5,7 @@ import Link from "next/link";
 
 const Employe_candidate = () => {
   return (
-    <div className="bg-gray-100 h-[490px] relative">
+    <div className="bg-white h-[490px] relative">
       <img
         className="absolute left-[300px] top-[100px]"
         src="/candidate.png"
