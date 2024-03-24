@@ -91,7 +91,7 @@ export default function Avis() {
                     value={formData.content}
                     onChange={textAreaChange}
                     className={"mb-5"}
-                    maxlength="200"
+                    maxLength="200"
                   />
                 </div>
                 <StarRating formData={formData} setFormData={setFormData} />
